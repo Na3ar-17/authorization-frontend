@@ -1,4 +1,7 @@
+'use client'
+
 import { DASHBOARD_PAGES } from '@/config/pages-url.config'
+import { authService } from '@/services/auth.service'
 import { NextPage } from 'next'
 import Link from 'next/link'
 
@@ -14,9 +17,12 @@ const NavBar: NextPage = () => {
             </Link>
           </li>
           <li>
-            <Link className="cursor-pointer " href={DASHBOARD_PAGES.REGISTER}>
+            <Link className="cursor-pointer" href={DASHBOARD_PAGES.REGISTER}>
               Register
             </Link>
+          </li>
+          <li className="cursor-pointer" onClick={() => authService.logout()}>
+            logout
           </li>
         </div>
       </ul>

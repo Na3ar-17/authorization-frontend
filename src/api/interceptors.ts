@@ -4,18 +4,18 @@ import {
 } from '@/services/auth-token-service'
 import axios, { type CreateAxiosDefaults } from 'axios'
 import { errorCatch } from './error'
-import { AuthService } from '@/services/auth.service'
+import { authService } from '@/services/auth.service'
 
 const options: CreateAxiosDefaults = {
   baseURL: 'http://localhost:4000/api',
   headers: {
     'Content-Type': 'application/json',
   },
+  // for server cookies
   withCredentials: true,
 }
 
 const axiosClassic = axios.create(options)
-
 const axiosWithAuth = axios.create(options)
 
 axiosWithAuth.interceptors.request.use((config) => {
@@ -42,7 +42,7 @@ axiosWithAuth.interceptors.response.use(
       originalRequest._isRetry = true
 
       try {
-        await AuthService.getNewTokens()
+        await authService.getNewTokens()
         return axiosWithAuth.request(originalRequest)
       } catch (error) {
         if (errorCatch(error) === 'jwt expired') removeFromStorage()

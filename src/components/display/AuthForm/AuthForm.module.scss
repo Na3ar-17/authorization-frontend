@@ -1,0 +1,21 @@
+.main {
+  @apply h-screen w-full grid place-items-center;
+
+  .form {
+    @apply bg-[#222]  w-[400px] rounded-md flex flex-col p-6 border-border border-solid;
+
+    .content {
+      .title {
+        @apply text-center text-2xl mb-8;
+      }
+
+      .input-container {
+        @apply mb-5;
+
+        .input {
+          @apply w-full px-3 py-2 border rounded-md bg-sidebar text-white;
+        }
+      }
+    }
+  }
+}

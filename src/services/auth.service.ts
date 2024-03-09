@@ -2,8 +2,7 @@ import { axiosClassic } from '@/api/interceptors'
 import { IAuthForm, IAuthResponse } from '@/types/auth.types'
 import { removeFromStorage, saveTokenStorage } from './auth-token-service'
 
-export class AuthService {
-  static getNewTokens: any
+class AuthService {
   async main(type: 'login' | 'register', data: IAuthForm) {
     const response = await axiosClassic.post<IAuthResponse>(
       `auth/${type}`,
@@ -33,3 +32,5 @@ export class AuthService {
     return response
   }
 }
+
+export const authService = new AuthService()
